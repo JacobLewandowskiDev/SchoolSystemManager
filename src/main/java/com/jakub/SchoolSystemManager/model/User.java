@@ -8,8 +8,9 @@ import java.util.Date;
 public class User {
 
     @Id
+    @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long user_id;
     @Column(name = "email", nullable = false, length = 124, unique = true)
     private String email;
     @Column(name = "password", nullable = false, length = 64)
@@ -20,19 +21,17 @@ public class User {
     private String lastname;
     @Column(name = "dateOfBirth", nullable = false)
     private Date dateOfBirth;
-    @Column(name = "role", nullable = false)
-    private Integer role;
+
 
     public User() {
     }
 
-    public User(Long id, String email, String password, String name, String lastname, Date dateOfBirth, Integer role) {
-        this.id = id;
+    public User(Long user_id, String email, String password, String name, String lastname, Date dateOfBirth) {
+        this.user_id = user_id;
         this.email = email;
         this.password = password;
         this.name = name;
         this.lastname = lastname;
         this.dateOfBirth = dateOfBirth;
-        this.role = role;
     }
 }
