@@ -1,5 +1,6 @@
 package com.jakub.SchoolSystemManager.config;
 
+import com.jakub.SchoolSystemManager.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,9 +29,9 @@ public class SecurityConfig {
                 .csrf().disable()
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/", "/index", "/css/**", "/js/**").permitAll();
-                    auth.requestMatchers("/student-interface.html").hasRole(UserRole.STUDENT.name());
-                    auth.requestMatchers("/teacher-interface.html").hasRole(UserRole.TEACHER.name());
-                    auth.requestMatchers("/admin-interface.html").hasAnyRole(UserRole.ADMIN.name(), UserRole.MAIN_ADMIN.name());
+                    auth.requestMatchers("/student-interface.html").hasRole(Role.ROLE_STUDENT);
+                    auth.requestMatchers("/teacher-interface.html").hasRole(Role.ROLE_TEACHER);
+                    auth.requestMatchers("/admin-interface.html").hasAnyRole(Role.ROLE_ADMIN, Role.ROLE_MAIN_ADMIN);
                     auth.anyRequest().authenticated();
                 })
                 .formLogin(formLogin -> {
@@ -55,13 +56,13 @@ public class SecurityConfig {
         UserDetails student = User.builder()
                 .username("student")
                 .password(encoder.encode("pass"))
-                .roles(UserRole.STUDENT.name())
+                .roles(Role.ROLE_STUDENT)
                 .build();
 
         UserDetails teacher = User.builder()
                 .username("teacher")
                 .password(encoder.encode("pass"))
-                .roles(UserRole.TEACHER.name())
+                .roles(Role.ROLE_TEACHER)
                 .build();
 
         return new InMemoryUserDetailsManager(

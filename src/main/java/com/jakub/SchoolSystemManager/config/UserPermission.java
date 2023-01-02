@@ -11,13 +11,12 @@ public enum UserPermission {
     ADMIN_WRITE("admin:write"),         //Write function to add new courses, teachers and students
     ADMIN_READ("admin:read"),           //Read function to fetch data about courses, teachers and students
     ADMIN_UPDATE("admin:update"),       //Update function for courses, teachers and students
-    ADMIN_DELETE("admin:delete"),       //delete function for courses, teachers and students
 
     //Main admin also has permissions of admin
     MAIN_ADMIN_WRITE("mainAdmin:write"),     //Write a new admin
     MAIN_ADMIN_READ("mainAdmin:read"),      //Read a list of all admins
     MAIN_ADMIN_UPDATE("mainAdmin:update"),  //Update admin info
-    MAIN_ADMIN_DELETE("mainAdmin:delete");  //Delete a admin
+    MAIN_ADMIN_DELETE("mainAdmin:delete");  //Delete a admin, teacher, student
 
     private final String permission;
 
